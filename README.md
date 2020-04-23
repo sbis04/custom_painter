@@ -1,2 +1,2 @@
-# custom_painter
+# Custom Painter
 Flutter Custom Painter Examples
