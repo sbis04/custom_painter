@@ -81,6 +81,7 @@ class _MyPainterState extends State<MyPainter>
   @override
   void dispose() {
     controller.dispose();
+    controller2.dispose();
     super.dispose();
   }
 
