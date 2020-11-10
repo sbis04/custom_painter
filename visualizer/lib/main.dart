@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Visualizer',
       theme: ThemeData(
         primarySwatch: Colors.pink,
@@ -26,7 +27,6 @@ class MyPainter extends StatefulWidget {
 class _MyPainterState extends State<MyPainter>
     with SingleTickerProviderStateMixin {
   var _radius = 100.0;
-  var _radians = 0.0;
 
   Animation<double> animation;
   AnimationController controller;
@@ -55,6 +55,12 @@ class _MyPainterState extends State<MyPainter>
       });
 
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -180,15 +186,15 @@ class PointPainter extends CustomPainter {
     if (math.cos(radians) < 0.0) {
       canvas.drawCircle(center, -radius * math.cos(radians), innerCirclePaint);
       textPainter.paint(
-      canvas,
-      pointOnCircle + Offset(-radius * 0.7, 10),
-    );
+        canvas,
+        pointOnCircle + Offset(-radius * 0.7, 10),
+      );
     } else {
       canvas.drawCircle(center, radius * math.cos(radians), innerCirclePaint);
       textPainter.paint(
-      canvas,
-      pointOnCircle + Offset(10, 10),
-    );
+        canvas,
+        pointOnCircle + Offset(10, 10),
+      );
     }
 
     path.lineTo(pointOnCircle.dx, pointOnCircle.dy);

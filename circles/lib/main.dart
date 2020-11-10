@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Custom Painter',
       theme: ThemeData(
         primarySwatch: Colors.pink,
@@ -23,6 +24,7 @@ class MyPainter extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Circles'),
+        centerTitle: true,
       ),
       body: CustomPaint(
         painter: ShapePainter(),

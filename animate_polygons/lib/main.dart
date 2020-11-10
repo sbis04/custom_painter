@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Custom Painter',
       theme: ThemeData(
         primarySwatch: Colors.pink,
@@ -23,8 +24,7 @@ class MyPainter extends StatefulWidget {
   _MyPainterState createState() => _MyPainterState();
 }
 
-class _MyPainterState extends State<MyPainter>
-    with TickerProviderStateMixin {
+class _MyPainterState extends State<MyPainter> with TickerProviderStateMixin {
   var _sides = 3.0;
 
   Animation<double> animation;
@@ -90,6 +90,7 @@ class _MyPainterState extends State<MyPainter>
     return Scaffold(
       appBar: AppBar(
         title: Text('Polygons'),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Column(
@@ -100,7 +101,8 @@ class _MyPainterState extends State<MyPainter>
                 animation: animation,
                 builder: (context, snapshot) {
                   return CustomPaint(
-                    painter: ShapePainter(_sides, animation2.value, animation.value),
+                    painter:
+                        ShapePainter(_sides, animation2.value, animation.value),
                     child: Container(),
                   );
                 },
@@ -132,7 +134,7 @@ class _MyPainterState extends State<MyPainter>
 // FOR PAINTING POLYGONS
 class ShapePainter extends CustomPainter {
   final double sides;
-  final double radius;
+  double radius;
   final double radians;
   ShapePainter(this.sides, this.radius, this.radians);
 
@@ -149,6 +151,7 @@ class ShapePainter extends CustomPainter {
     var angle = (math.pi * 2) / sides;
 
     Offset center = Offset(size.width / 2, size.height / 2);
+
     Offset startPoint =
         Offset(radius * math.cos(radians), radius * math.sin(radians));
 
